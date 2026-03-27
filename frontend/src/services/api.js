@@ -1,6 +1,12 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: '/api', timeout: 15000 })
+// Use environment variable for API URL
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080'
+
+const api = axios.create({
+  baseURL: API_URL,
+  timeout: 15000
+})
 
 api.interceptors.request.use(config => {
   const token = localStorage.getItem('token')
@@ -20,10 +26,13 @@ api.interceptors.response.use(
   }
 )
 
+// Auth
 export const authAPI = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
 }
+
+// Expenses
 export const expenseAPI = {
   getAll: () => api.get('/expenses'),
   getById: (id) => api.get(`/expenses/${id}`),
@@ -35,6 +44,8 @@ export const expenseAPI = {
   search: (q) => api.get(`/expenses/search?q=${encodeURIComponent(q)}`),
   exportCsv: () => api.get('/expenses/export/csv', { responseType: 'blob' }),
 }
+
+// Income
 export const incomeAPI = {
   getAll: () => api.get('/income'),
   create: (data) => api.post('/income', data),
@@ -42,20 +53,27 @@ export const incomeAPI = {
   delete: (id) => api.delete(`/income/${id}`),
   getByRange: (start, end) => api.get(`/income/range?start=${start}&end=${end}`),
 }
+
+// Budgets
 export const budgetAPI = {
   getCurrent: () => api.get('/budgets'),
   getForMonth: (m, y) => api.get(`/budgets/${m}/${y}`),
   createOrUpdate: (data) => api.post('/budgets', data),
   delete: (id) => api.delete(`/budgets/${id}`),
 }
+
+// Categories
 export const categoryAPI = {
   getAll: () => api.get('/categories'),
   getExpense: () => api.get('/categories/expense'),
   getIncome: () => api.get('/categories/income'),
 }
+
+// Analytics
 export const analyticsAPI = {
   getDashboard: () => api.get('/analytics/dashboard'),
   getCategories: (m, y) => api.get(`/analytics/categories?month=${m}&year=${y}`),
   getTrends: (y) => api.get(`/analytics/trends?year=${y}`),
 }
+
 export default api
