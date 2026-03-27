@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // Use environment variable for API URL
-const API_URL = import.meta.env.VITE_API_URL || 'https://expense-front-end-lsgy.vercel.app'
+const API_URL = import.meta.env.VITE_API_URL || 'https://expense-front-end-2bp1.onrender.com'
 
 const api = axios.create({
   baseURL: API_URL,
