@@ -33,6 +33,38 @@ export const authAPI = {
   login: (data) => api.post('/auth/login', data),
 }
 
+export const expenseAPI = {
+  getAll: () => api.get('/expenses'),
+  getById: (id) => api.get(`/expenses/${id}`),
+  create: (data) => api.post('/expenses', data),
+  update: (id, data) => api.put(`/expenses/${id}`, data),
+  delete: (id) => api.delete(`/expenses/${id}`),
+}
+
+export const incomeAPI = {
+  getAll: () => api.get('/income'),
+  getById: (id) => api.get(`/income/${id}`),
+  create: (data) => api.post('/income', data),
+  update: (id, data) => api.put(`/income/${id}`, data),
+  delete: (id) => api.delete(`/income/${id}`),
+}
+
+export const budgetAPI = {
+  getAll: () => api.get('/budgets'),
+  getById: (id) => api.get(`/budgets/${id}`),
+  create: (data) => api.post('/budgets', data),
+  update: (id, data) => api.put(`/budgets/${id}`, data),
+  delete: (id) => api.delete(`/budgets/${id}`),
+}
+
+export const categoryAPI = {
+  getAll: () => api.get('/categories'),
+  getById: (id) => api.get(`/categories/${id}`),
+  create: (data) => api.post('/categories', data),
+  update: (id, data) => api.put(`/categories/${id}`, data),
+  delete: (id) => api.delete(`/categories/${id}`),
+}
+
 export const analyticsAPI = {
   getSummary: () => api.get('/analytics/summary'),
   getMonthly: () => api.get('/analytics/monthly'),

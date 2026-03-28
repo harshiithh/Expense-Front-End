@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Wallet, TrendingDown, TrendingUp, PiggyBank, Download, RefreshCw } from 'lucide-react'
-import { analyticsAPI } from '../services/api'
+// import { analyticsAPI } from '../services/api'
 import { formatCurrency, formatDate } from '../utils/format'
 import StatCard from '../components/common/StatCard'
 import CategoryBadge from '../components/common/CategoryBadge'
