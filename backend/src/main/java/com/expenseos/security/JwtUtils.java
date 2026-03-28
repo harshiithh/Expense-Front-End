@@ -1,12 +1,12 @@
 package com.expenseos.security;
 
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
 import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Component
@@ -19,7 +19,7 @@ public class JwtUtils {
     private int jwtExpirationMs;
 
     private SecretKey key() {
-        return Keys.hmacShaKeyFor(jwtSecret.getBytes());
+        return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
     public String generateToken(String email) {
@@ -32,13 +32,20 @@ public class JwtUtils {
     }
 
     public String getEmailFromToken(String token) {
-        return Jwts.parser().verifyWith(key()).build()
-                .parseSignedClaims(token).getPayload().getSubject();
+        return Jwts.parser()
+                .verifyWith(key())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getSubject();
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().verifyWith(key()).build().parseSignedClaims(token);
+            Jwts.parser()
+                .verifyWith(key())
+                .build()
+                .parseSignedClaims(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
             return false;
