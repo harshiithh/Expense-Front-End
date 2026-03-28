@@ -42,6 +42,7 @@ export const expenseAPI = {
   create: (data) => api.post('/expenses', data),
   update: (id, data) => api.put(`/expenses/${id}`, data),
   delete: (id) => api.delete(`/expenses/${id}`),
+  exportCsv: () => api.get('/expenses/export/csv', { responseType: 'blob' }),
 }
 
 export const incomeAPI = {
@@ -62,6 +63,8 @@ export const budgetAPI = {
 
 export const categoryAPI = {
   getAll: () => api.get('/categories'),
+  getExpense: () => api.get('/categories/expense'),
+  getIncome: () => api.get('/categories/income'),
   getById: (id) => api.get(`/categories/${id}`),
   create: (data) => api.post('/categories', data),
   update: (id, data) => api.put(`/categories/${id}`, data),
@@ -69,9 +72,9 @@ export const categoryAPI = {
 }
 
 export const analyticsAPI = {
-  getSummary: () => api.get('/analytics/dashboard'),    // fixed
-  getMonthly: () => api.get('/analytics/trends'),       // fixed
-  getByCategory: () => api.get('/analytics/categories'), // fixed
+  getSummary: () => api.get('/analytics/dashboard'),
+  getMonthly: () => api.get('/analytics/trends'),
+  getByCategory: () => api.get('/analytics/categories'),
 }
 
 export default api
