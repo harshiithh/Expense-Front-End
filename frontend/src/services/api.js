@@ -33,4 +33,10 @@ export const authAPI = {
   login: (data) => api.post('/auth/login', data),
 }
 
+export const analyticsAPI = {
+  getSummary: () => api.get('/analytics/summary'),
+  getMonthly: () => api.get('/analytics/monthly'),
+  getByCategory: () => api.get('/analytics/category'),
+}
+
 export default api
