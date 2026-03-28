@@ -1,11 +1,13 @@
 import axios from 'axios'
 
-// Use backend URL deployed on Render
 const API_URL = import.meta.env.VITE_API_URL || 'https://expense-front-end-2bp1.onrender.com/api'
 
 const api = axios.create({
   baseURL: API_URL,
-  timeout: 15000
+  timeout: 15000,
+  headers: {
+    'Content-Type': 'application/json',
+  }
 })
 
 api.interceptors.request.use(config => {
