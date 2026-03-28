@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Wallet, TrendingDown, TrendingUp, PiggyBank, Download, RefreshCw } from 'lucide-react'
-// import { analyticsAPI } from '../services/api'
+import { analyticsAPI } from '../services/api'
 import { formatCurrency, formatDate } from '../utils/format'
 import StatCard from '../components/common/StatCard'
 import CategoryBadge from '../components/common/CategoryBadge'
@@ -35,7 +35,7 @@ export default function DashboardPage() {
   const load = async () => {
     setLoading(true)
     try {
-      const res = await analyticsAPI.getDashboard()
+      const res = await analyticsAPI.getSummary()
       setData(res.data.data)
     } catch { toast.error('Failed to load dashboard') }
     finally { setLoading(false) }
