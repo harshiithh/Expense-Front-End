@@ -69,9 +69,9 @@ export const categoryAPI = {
 }
 
 export const analyticsAPI = {
-  getSummary: () => api.get('/analytics/summary'),
-  getMonthly: () => api.get('/analytics/monthly'),
-  getByCategory: () => api.get('/analytics/category'),
+  getSummary: () => api.get('/analytics/dashboard'),    // fixed
+  getMonthly: () => api.get('/analytics/trends'),       // fixed
+  getByCategory: () => api.get('/analytics/categories'), // fixed
 }
 
 export default api
