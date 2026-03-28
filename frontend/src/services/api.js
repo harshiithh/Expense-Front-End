@@ -55,8 +55,10 @@ export const incomeAPI = {
 
 export const budgetAPI = {
   getAll: () => api.get('/budgets'),
+  getForMonth: (month, year) => api.get(`/budgets/${month}/${year}`),  // ← added
   getById: (id) => api.get(`/budgets/${id}`),
   create: (data) => api.post('/budgets', data),
+  createOrUpdate: (data) => api.post('/budgets', data),                // ← added
   update: (id, data) => api.put(`/budgets/${id}`, data),
   delete: (id) => api.delete(`/budgets/${id}`),
 }
@@ -75,6 +77,8 @@ export const analyticsAPI = {
   getSummary: () => api.get('/analytics/dashboard'),
   getMonthly: () => api.get('/analytics/trends'),
   getByCategory: () => api.get('/analytics/categories'),
+  getTrends: (year) => api.get(`/analytics/trends?year=${year}`),          // ← added
+  getCategories: (month, year) => api.get(`/analytics/categories?month=${month}&year=${year}`), // ← added
 }
 
 export default api
