@@ -82,7 +82,11 @@ spring.datasource.password=YOUR_MYSQL_PASSWORD
 
 ```bash
 cd backend
+# Run with default profile (PostgreSQL)
 mvn spring-boot:run
+
+# OR Run with dev profile (MySQL)
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
 Backend starts at **http://localhost:8080**
